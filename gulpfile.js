@@ -1,7 +1,10 @@
 var gulp = require('gulp'),
-    webserver = require('gulp-webserver');
+    webserver = require('gulp-webserver'),
+    browserify = require('gulp-browserify'),
+    rename = require('gulp-rename');
 
 gulp.task('default', ['dev']);
+gulp.task('dev', ['watch', 'js']);
 gulp.task('server', ['webserver']);
 
 gulp.task('webserver', function () {
@@ -13,6 +16,17 @@ gulp.task('webserver', function () {
     }));
 });
 
-gulp.task('dev', function () {
-  console.log('Hello world');
+gulp.task('js', function () {
+  gulp.src('./javascripts/index.js')
+    .pipe(browserify({
+      transform: ['reactify'],
+      extensions: ['.js']
+    }))
+    .on('error', console.log)
+    .pipe(rename('app.js'))
+    .pipe(gulp.dest('.'));
+});
+
+gulp.task('watch', function () {
+  gulp.watch('./javascripts/**/*.js', ['js']);
 });
