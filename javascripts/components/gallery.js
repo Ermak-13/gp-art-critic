@@ -1,5 +1,6 @@
 var React = require('react'),
     _ = require('underscore'),
+    sprintf = require('sprintf-js').sprintf,
 
     Panel = require('./panel'),
     GalleryEl = require('./gallery_element');
@@ -8,7 +9,9 @@ var styles = {
   header: {
     container: {
       margin: '0',
-      padding: '10px'
+      marginBottom: '2px',
+      padding: '10px',
+      borderRadius: 0
     },
 
     title: {
@@ -18,16 +21,32 @@ var styles = {
 };
 
 var Gallery = React.createClass({
+  getInitialState: function() {
+    return {
+      files: []
+    };
+  },
+
+  componentWillMount: function() {
+    global.GD.updated(function (files) {
+      this.setState({ files: files });
+    }.bind(this));
+  },
+
   render: function() {
+    var status = sprintf('%s изображений', this.state.files.length);
+
     return (
       <div>
         <div className="jumbotron" style={ styles.header.container }>
           <div className="pull-right">
-            <Panel />
+            <Panel
+              disabled={ this.state.files.length <= 0 }
+            />
           </div>
 
           <strong className="lead" style={ styles.header.title }>
-            135 Изображений
+            { status }
           </strong>
           <div className="clearfix" />
         </div>
@@ -40,10 +59,11 @@ var Gallery = React.createClass({
   },
 
   getElementsHTML: function () {
-    return _.times(3, function (i) {
+    return _.map(this.state.files, function (el, i) {
       return (
         <GalleryEl
           key={ i }
+          obj={ el }
         />
       );
     });

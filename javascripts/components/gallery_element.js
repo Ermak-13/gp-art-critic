@@ -1,21 +1,26 @@
-var React = require('react');
+var React = require('react'),
+
+    InfoField = require('./info_field');
 
 var styles = {
   container: {
     base: {
-      padding: '10px 0'
+      padding: '10px 0',
+      margin: 0
     },
 
     hover: {
       cursor: 'pointer',
       padding: '10px 0',
-      background: '#EEE'
+      background: '#EEE',
+      margin: 0
     },
 
     selected: {
       cursor: 'pointer',
       padding: '10px 0',
-      background: '#DDD'
+      background: '#DDD',
+      margin: 0
     }
   }
 };
@@ -50,6 +55,8 @@ var GalleryEl = React.createClass({
   },
 
   render: function () {
+    var obj = this.props.obj;
+
     return (
       <div className="row" style={ this.getContainerStyles() }
         onMouseOver={ this.handleMouseOverContainer}
@@ -57,11 +64,14 @@ var GalleryEl = React.createClass({
         onClick={ this.handleClickContainer }>
 
         <div className="col-md-3" style={{ overflowX: 'hidden' }}>
-          <img style={{ height: '120px' }} src="http://static.tonkosti.ru/images/d/d1/%D0%92%D0%B8%D0%B4_%D0%BD%D0%B0_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D1%83_%D0%90%D0%B4%D0%B8%D1%88%D0%B8,_%D0%93%D1%80%D1%83%D0%B7%D0%B8%D1%8F.jpg" />
+          <img style={{ height: '120px' }} src={ obj.preview } />
         </div>
 
         <div className="col-md-9">
-          Welcom to My World
+          <InfoField label="Name:" value={ obj.name } />
+          <InfoField label="Type:" value={ obj.type } />
+          <InfoField label="Size:" value={ obj.size } />
+          <InfoField label="Last modified:" value={ obj.lastModified } />
         </div>
       </div>
     );

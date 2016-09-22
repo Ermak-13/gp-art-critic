@@ -24,7 +24,7 @@ var styles = {
 
 var Uploader = React.createClass({
   handleDrop: function (files) {
-    console.log(files);
+    global.GD.add(files);
   },
 
   render: function () {
