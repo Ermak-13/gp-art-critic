@@ -33,6 +33,14 @@ var Gallery = React.createClass({
     }.bind(this));
   },
 
+  getActions: function () {
+    return {
+      download: function () {
+        global.Actions.download(this.state.files);
+      }.bind(this)
+    };
+  },
+
   render: function() {
     var status = sprintf('%s изображений', this.state.files.length);
 
@@ -42,6 +50,7 @@ var Gallery = React.createClass({
           <div className="pull-right">
             <Panel
               disabled={ this.state.files.length <= 0 }
+              actions={ this.getActions() }
             />
           </div>
 

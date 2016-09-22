@@ -1,5 +1,7 @@
 var React = require('react'),
-    sprintf = require('sprintf-js').sprintf;
+    sprintf = require('sprintf-js').sprintf,
+
+    Button = require('./button');
 
 var Panel = React.createClass({
   getDisabledClassName: function (className) {
@@ -13,14 +15,19 @@ var Panel = React.createClass({
   render: function() {
     return (
       <div>
-        <a href="#" className={ this.getDisabledClassName('btn btn-primary') }
-          style={{ marginRight: '5px' }}>
-          Исправить время в метаданных
-        </a>
+        <Button
+          className="btn btn-primary"
+          style={{ marginRight: '5px' }}
+          disabled={ this.props.disabled }
+          value="Исправить время в метаданных"
+        />
 
-        <a href="#" className={ this.getDisabledClassName('btn btn-success') }>
-          Скачать
-        </a>
+        <Button
+          className="btn btn-success"
+          disabled={ this.props.disabled }
+          onClick={ this.props.actions.download }
+          value="Скачать"
+        />
       </div>
     );
   }

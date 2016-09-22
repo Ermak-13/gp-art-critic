@@ -3,13 +3,14 @@ var React = require('react'),
 
     Directory = require('./directory'),
     AppDispatcher = require('./app_dispatcher'),
+    Actions = require('./actions'),
     Uploader = require('./components/uploader'),
     Gallery = require('./components/gallery');
 
 // GD - gallery directory
 global.GD = new Directory();
 global.AppDispatcher = AppDispatcher;
-global.moment = require('moment');
+global.Actions = Actions;
 
 ReactDOM.render(
   <Uploader />,
