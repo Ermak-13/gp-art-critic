@@ -1,3 +1,4 @@
-# GP Img Metadata Fixer
+# GP Gallery Fixer
 
-It is static webpage. It fixes time field of img metadata.
+It is static webpage. It builds workspace with photos, imgs & etc ...
+
