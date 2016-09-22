@@ -2,7 +2,7 @@ var React = require('react'),
     ReactDOM = require('react-dom'),
 
     Uploader = require('./components/uploader'),
-    Panel = require('./components/panel');
+    Gallery = require('./components/gallery');
 
 ReactDOM.render(
   <Uploader />,
@@ -10,6 +10,6 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <Panel />,
-  document.getElementById('panel-container')
+  <Gallery />,
+  document.getElementById('gallery-container')
 );
