@@ -7,6 +7,7 @@ var React = require('react'),
 var styles = {
   header: {
     container: {
+      margin: '0',
       padding: '10px'
     },
 
